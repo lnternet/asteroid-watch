@@ -50,7 +50,7 @@ export const Container: React.FC<ContainerProps> = (props) => {
         <Typography
           variant="h4"
           align="center"
-          color="#6f4a69"
+          color="rgb(102, 85, 99)"
           fontWeight={"bold"}
         >
           Asteroid Watch

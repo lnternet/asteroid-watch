@@ -15,7 +15,7 @@ type AsteroidListItem = {
   name: string;
   date: string;
   isHazardous: boolean;
-  closestApproach: string; //number;
+  closestApproach: number;
   isExpanded: boolean;
   handleClick: (index: number) => void;
 };

@@ -23,6 +23,7 @@ This is a frontend interview challenge based on a containerized React SPA that i
 - You may use search engines and AI to assist.
 - If you use AI tools, be prepared to explain the code.
 - You may push directly to `main`.
+- NASA OpenAPI token has limitations. Use mock response if necesary, already supported in `useAsteroidData` hook.
 
 ## ✅ Tasks
 
