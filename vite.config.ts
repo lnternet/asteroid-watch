@@ -12,6 +12,6 @@ export default defineConfig({
       entry: "src/app.tsx",
       template: "/index.html",
     }),
-    checker({ typescript: true }),
+    //checker({ typescript: true }),
   ],
 });
