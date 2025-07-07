@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { APIResponse } from "~/contracts/APIResponse";
 import { formatDateParts } from "~/utils/date";
 
-// NeoWs (Near Earth Object Web Service) https://api.nasa.gov/
+// NeoWs (Near Earth Object Web Service) https://api.nasa.gov/#asteroids-neows
 
 export const useAsteroidData = (useMockData: boolean = false) => {
   return useQuery<APIResponse>({

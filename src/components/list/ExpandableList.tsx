@@ -1,21 +1,12 @@
 import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
-import {
-  Collapse,
-  Divider,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  ListSubheader,
-  Typography,
-} from "@mui/material";
-import { ExpandLess, ExpandMore, Warning } from "@mui/icons-material";
+import { List, ListSubheader, Typography } from "@mui/material";
+import { AsteroidListItem } from "./AsteroidListItem";
 
 export type ListItem = {
   date: string;
   name: string;
-  isHazarduous: boolean;
+  isHazardous: boolean;
   closestApproach: string;
 };
 
@@ -34,7 +25,12 @@ export const ExpandableList: React.FC<ExpandableListProps> = (props) => {
   };
 
   return (
-    <Paper sx={{ boxShadow: "rgba(0, 0, 0, 0.5) 6px 6px 24px" }}>
+    <Paper
+      sx={{
+        backgroundColor: "#ddd8d7",
+        boxShadow: "rgba(0, 0, 0, 0.5) 6px 6px 24px",
+      }}
+    >
       <List
         sx={{
           maxHeight: 380,
@@ -50,7 +46,7 @@ export const ExpandableList: React.FC<ExpandableListProps> = (props) => {
                 sx={{
                   position: "sticky",
                   top: 0,
-                  backgroundColor: "background.paper",
+                  backgroundColor: "#ddd8d7",
                   zIndex: 1,
                   borderRadius: "8px",
                   padding: "12px",
@@ -62,47 +58,15 @@ export const ExpandableList: React.FC<ExpandableListProps> = (props) => {
               </ListSubheader>
               {item.dateEntries.map((entry, index) => (
                 <div key={index}>
-                  <ListItemButton
-                    onClick={() => handleClick(index)}
-                    sx={{
-                      padding: "12px 24px 12px 24px",
-                      gap: "12px",
-                    }}
-                  >
-                    <ListItemIcon>
-                      <img
-                        src="favicon.ico"
-                        width={32}
-                        height={32}
-                        alt="icon"
-                      />
-                    </ListItemIcon>
-                    <ListItemText primary={entry.date} />
-                    <ListItemText primary={entry.name} />
-                    {entry.isHazarduous && (
-                      <ListItemIcon>
-                        <Warning color="error" />
-                      </ListItemIcon>
-                    )}
-                    {openIndex === index ? <ExpandLess /> : <ExpandMore />}
-                  </ListItemButton>
-                  <Collapse
-                    in={openIndex === index}
-                    timeout="auto"
-                    unmountOnExit
-                  >
-                    <Typography variant="body2" sx={{ padding: "12px 24px" }}>
-                      Closest approach (kilometers): {entry.closestApproach}
-                    </Typography>
-                    <Divider variant="middle" />
-                    <Typography variant="body2" sx={{ padding: "12px 24px" }}>
-                      Closest approach (lunar distances): N/A
-                    </Typography>
-                    <Divider variant="middle" />
-                    <Typography variant="body2" sx={{ padding: "12px 24px" }}>
-                      Estimated diameter (meters): N/A
-                    </Typography>
-                  </Collapse>
+                  <AsteroidListItem
+                    index={index}
+                    name={entry.name}
+                    date={entry.date}
+                    isHazardous={entry.isHazardous}
+                    closestApproach={entry.closestApproach}
+                    isExpanded={openIndex === index}
+                    handleClick={handleClick}
+                  />
                 </div>
               ))}
             </ul>

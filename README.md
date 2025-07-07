@@ -1,25 +1,41 @@
-# Asteroid Watch
+# 🛰️ Asteroid Watch
 
-🛰️ Track space pebbles before they track you!
+_Track space objects with real NASA data._
 
-Interview challenge project. Containerized React CSR SPA integrated into NASA OpenAPI with multiple intentional issues.
+This is a frontend interview challenge based on a containerized React SPA that integrates with NASA’s OpenAPI. The project includes intentional issues to evaluate debugging, development, and deployment skills.
 
-![Alt text](https://raw.githubusercontent.com/lnternet/asteroid-watch/main/public/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/lnternet/asteroid-watch/main/public/screenshot.png)
 
-## Tasks
+## 🧰 Tech Stack
 
-### 1. Project is in absolute ruin, does not even build!
+- **React.js + TypeScript** – Single Page Application (SPA)
+- **Vite** – Frontend build tool
+- **Nginx** – Static file serving
+- **Docker** – Containerized deployment
+- **GitHub Actions** – CI/CD pipeline
+- **Google Cloud Run** – Hosting
+- **NASA OpenAPI** – Live space data
 
-.
+## 📌 Guidelines
 
-### 1. Tests are failing. Can you fix them?
+- You do **not** need to complete all tasks.
+- Feel free to ask questions at any point.
+- You may use search engines and AI to assist.
+- If you use AI tools, be prepared to explain the code.
+- You may push directly to `main`.
 
-.
+## ✅ Tasks
 
-### 1. Let's have more details about each asteroid.
+1. **Project does not build**  
+   Investigate and fix the build errors. Commit your changes.
 
-Expand API response contract with new fields
+2. **Tests are failing**  
+   Debug and fix the broken tests. Commit once resolved.
 
-### 1. Deployed website is not working, help!
+3. **Improve asteroid details**  
+   Extend the API response types to match what’s shown in the collapsible section of the `AsteroidListItem`. Extract the collapsible part into a separate component.
 
-.
+4. **Production site is broken**  
+   Review and debug the deployed site at:  
+   https://asteroid-watch-441752467572.europe-central2.run.app/  
+   Identify the problem and deploy a working fix.

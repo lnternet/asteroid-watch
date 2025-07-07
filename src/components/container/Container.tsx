@@ -1,28 +1,42 @@
-import { AppBar, Box, Paper, Toolbar, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { ExpandableList, type ListItem } from "../list/ExpandableList";
 import type { APIResponse } from "~/contracts/APIResponse";
+import { useMemo } from "react";
 
 type ContainerProps = {
   data: APIResponse;
 };
 
 export const Container: React.FC<ContainerProps> = (props) => {
-  const dates = Object.keys(props.data.near_earth_objects);
-  const normalizedListData = dates.map((date) => {
-    const items = props.data.near_earth_objects[date].map((item): ListItem => {
+  const normalizedListData = useMemo(() => {
+    // Get dates from object, as they are keys not values:
+    const dates = Object.keys(props.data.near_earth_objects);
+
+    // Dates are in random order, need to sort them:
+    dates.sort();
+
+    // Map API response to component prop type:
+    const normalizedListData = dates.map((date) => {
+      const items = props.data.near_earth_objects[date].map(
+        (item): ListItem => {
+          return {
+            date: item.close_approach_data[0].close_approach_date_full,
+            name: item.name,
+            isHazardous: item.is_potentially_hazardous_asteroid,
+            closestApproach:
+              item.close_approach_data[0].miss_distance.kilometers,
+          };
+        }
+      );
+
       return {
-        date: item.close_approach_data[0].close_approach_date_full,
-        name: item.name,
-        isHazarduous: item.is_potentially_hazardous_asteroid,
-        closestApproach: item.close_approach_data[0].miss_distance.kilometers,
+        date: date,
+        dateEntries: items,
       };
     });
 
-    return {
-      date: date,
-      dateEntries: items,
-    };
-  });
+    return normalizedListData;
+  }, [props.data]);
 
   return (
     <Box sx={{ maxWidth: "600px", maxHeight: "70vh" }}>
@@ -34,19 +48,32 @@ export const Container: React.FC<ContainerProps> = (props) => {
         gap="6px"
       >
         <Typography
-          variant="h5"
+          variant="h4"
           align="center"
-          color="white"
+          color="#6f4a69"
           fontWeight={"bold"}
         >
-          #Asteroid_Watch
+          Asteroid Watch
         </Typography>
       </Box>
       <Typography
-        variant="body2"
+        variant="body1"
         align="center"
-        color="white"
-        marginBottom={"12px"}
+        color="#443836"
+        fontWeight={"bold"}
+        marginBottom={"24px"}
+      >
+        <i>
+          "If the Earth gets hit by an asteroid, it's game over. It's
+          control-alt-delete for civilization."
+        </i>
+        - Bill Nye
+      </Typography>
+      <Typography
+        variant="body2"
+        align="left"
+        color="#443836"
+        marginBottom={"4px"}
       >
         Closest asteroids to Earth in next 7 days:
       </Typography>
