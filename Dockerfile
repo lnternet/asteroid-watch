@@ -15,6 +15,6 @@ ENV PORT=8080
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=builder /application/dist /usr/share/nginx/application
+COPY --from=builder /application/dist /usr/share/nginx/application/dist
 
 CMD ["nginx", "-g", "daemon off;"]
